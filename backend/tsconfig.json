@@ -1,0 +1,22 @@
+{
+  "files": ["./index.ts", "./ds.ts", "./routes/concursoRoutes.ts"],
+  "compilerOptions": {
+    "module": "ESNext",
+    "target": "ES2020",
+    "moduleResolution": "Node",
+    "allowImportingTsExtensions": true,
+    "types": ["node"],
+    "noEmit": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "noUncheckedIndexedAccess": true,
+    "strict": true,
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "noUncheckedSideEffectImports": true,
+    "moduleDetection": "force",
+    "skipLibCheck": true
+  },
+  "include": ["./index.ts", "./ds.ts", "./routes/**/*.ts"],
+  "exclude": ["./node_modules", "./dist"]
+}
