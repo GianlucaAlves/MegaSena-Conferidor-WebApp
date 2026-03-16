@@ -94,6 +94,15 @@ function App() {
       .finally(() => setCarregando(false));
   };
 
+  const formatarData = (data: string) => {
+    const date = new Date(data);
+    return date.toLocaleDateString("pt-BR", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric"
+    });
+}
+
   return (
     <>
       <GlobalStyle />
@@ -102,7 +111,7 @@ function App() {
         <Container>
           <TopBar>
             <Badge>Conferidor oficial</Badge>
-            <SmallNote>Atualizado em tempo real pela API local</SmallNote>
+            <SmallNote>Atualizado pela API local</SmallNote>
           </TopBar>
 
           <Title>Mega-Sena</Title>
@@ -143,7 +152,7 @@ function App() {
             <ResultCard>
               <ResultHeader>
                 <ResultTitle>Concurso {concurso.concurso}</ResultTitle>
-                <ResultDate>{concurso.data_do_sorteio}</ResultDate>
+                <ResultDate>{formatarData(concurso.data_do_sorteio)}</ResultDate>
               </ResultHeader>
               <BallsGrid>
                 {dezenas.map((dezena) => (

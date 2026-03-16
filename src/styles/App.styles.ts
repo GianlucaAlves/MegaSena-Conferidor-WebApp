@@ -1,18 +1,18 @@
 import styled, { createGlobalStyle, keyframes } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
-  @import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Space+Grotesk:wght@500;700&display=swap");
+  @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
 
   :root {
-    --bg-0: #f3f9ec;
-    --bg-1: #d7edd2;
-    --surface: #fdfef9;
-    --surface-2: #ffffff;
-    --text: #17341b;
-    --muted: #4d6551;
-    --primary: #1a8e3a;
-    --primary-2: #0f6f2a;
-    --danger: #b42318;
+    --bg-0: #0d0e11;
+    --surface: #1b1e24;
+    --surface-2: #23262e;
+    --text: #f3f4f8;
+    --muted: #8a8fa3;
+    --primary: #4db96a;
+    --danger: #ff5c5c;
+    --border: #23262e;
+    --shadow: 0 4px 24px rgba(0,0,0,0.12);
   }
 
   * {
@@ -27,9 +27,9 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     margin: 0;
-    font-family: "Sora", "Segoe UI", sans-serif;
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
     color: var(--text);
-    background: radial-gradient(circle at 15% 10%, #ffffff 0%, var(--bg-0) 42%, var(--bg-1) 100%);
+    background: var(--bg-0);
   }
 `;
 
@@ -59,17 +59,6 @@ export const Page = styled.main`
 export const AmbientGlow = styled.div`
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(
-      circle at 12% 22%,
-      rgba(255, 255, 255, 0.8) 0 16%,
-      transparent 42%
-    ),
-    radial-gradient(
-      circle at 88% 80%,
-      rgba(52, 168, 83, 0.14) 0 14%,
-      transparent 44%
-    );
   pointer-events: none;
 `;
 
@@ -78,19 +67,15 @@ export const Container = styled.section`
   z-index: 1;
   max-width: 840px;
   margin: 0 auto;
-  padding: 28px;
-  border: 1px solid rgba(20, 88, 34, 0.14);
-  border-radius: 24px;
-  background: linear-gradient(
-    145deg,
-    rgba(253, 254, 249, 0.97),
-    rgba(248, 252, 245, 0.92)
-  );
-  box-shadow: 0 24px 50px rgba(18, 75, 31, 0.15);
+  padding: 32px 28px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
   animation: ${fadeUp} 520ms ease-out;
 
   @media (max-width: 700px) {
-    padding: 22px;
+    padding: 22px 8px;
   }
 `;
 
@@ -107,16 +92,16 @@ export const Badge = styled.span`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 6px 12px;
+  padding: 6px 14px;
   border-radius: 999px;
-  font-size: 0.76rem;
-  letter-spacing: 0.08em;
+  font-size: 0.78rem;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: #0f6a2b;
-  background: rgba(48, 170, 78, 0.12);
-  border: 1px solid rgba(26, 142, 58, 0.28);
+  color: var(--primary);
+  background: #23262e;
+  border: 1px solid var(--primary);
+  font-weight: 600;
 `;
-
 export const SmallNote = styled.p`
   margin: 0;
   font-size: 0.85rem;
@@ -125,17 +110,19 @@ export const SmallNote = styled.p`
 
 export const Title = styled.h1`
   margin: 0;
-  font-family: "Space Grotesk", "Segoe UI", sans-serif;
-  font-size: clamp(2.1rem, 4vw, 3rem);
-  line-height: 1.05;
-  color: #155d26;
-  letter-spacing: -0.03em;
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  line-height: 1.08;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  font-weight: 700;
 `;
 
 export const SubTitle = styled.p`
   max-width: 62ch;
-  margin: 12px 0 24px;
+  margin: 14px 0 28px;
   color: var(--muted);
+  font-size: 1.08rem;
 `;
 
 export const SearchRow = styled.div`
@@ -167,7 +154,7 @@ export const PrimaryButton = styled.button`
   border-radius: 12px;
   border: none;
   color: #fff;
-  background: linear-gradient(180deg, var(--primary), var(--primary-2));
+  background: #0d4e13;
   font-weight: 600;
   cursor: pointer;
   transition:
@@ -236,12 +223,12 @@ export const ErrorMessage = styled.p`
 `;
 
 export const ResultCard = styled.section`
-  margin-top: 20px;
-  padding: 20px;
-  border: 1px solid #cbe0cd;
+  margin-top: 24px;
+  padding: 24px 20px;
+  border: 1px solid var(--border);
   border-radius: 16px;
-  background: var(--surface);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+  background: var(--surface-2);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
   animation: ${fadeUp} 420ms ease;
 `;
 
@@ -276,15 +263,17 @@ export const BallsGrid = styled.div`
 `;
 
 export const Ball = styled.div`
-  min-height: 48px;
+  width: 80px;
+  height: 80px;
   display: grid;
   place-items: center;
-  border-radius: 999px;
-  background: radial-gradient(circle at 30% 20%, #4db96a, #228841);
-  color: #f8fffa;
-  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   letter-spacing: 0.02em;
-  box-shadow: 0 8px 16px rgba(27, 111, 51, 0.35);
+  box-shadow: 0 2px 8px rgba(77, 185, 106, 0.18);
+  border: 2px solid var(--surface);
 `;
