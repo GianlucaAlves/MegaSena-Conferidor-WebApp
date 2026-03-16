@@ -138,4 +138,4 @@ As variáveis de ambiente são configuradas automaticamente pelo Docker Compose.
 
 ---
 
-**Autor:** Engenharia de Software - Atividade 03
+**Autor:** Gianluca Lourenço Alves
