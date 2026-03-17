@@ -306,6 +306,12 @@ export const StatsGrid = styled.div`
   }
 `;
 
+export const StatsStack = styled.div`
+  margin-top: 12px;
+  display: grid;
+  gap: 12px;
+`;
+
 export const StatCard = styled.article`
   padding: 14px;
   border-radius: 14px;
@@ -346,13 +352,6 @@ export const NumberChip = styled.span`
   color: #f7fff9;
   font-weight: 600;
   font-size: 0.93rem;
-`;
-
-export const InsightText = styled.p`
-  margin: 8px 0 0;
-  color: #cde3d4;
-  font-size: 0.93rem;
-  line-height: 1.45;
 `;
 
 export const ChartList = styled.div`
@@ -397,21 +396,4 @@ export const ChartValue = styled.span`
   color: #f2fff5;
   font-size: 0.88rem;
   font-weight: 700;
-`;
-
-export const RepeatedList = styled.ul`
-  list-style: none;
-  margin: 10px 0 0;
-  padding: 0;
-  display: grid;
-  gap: 8px;
-`;
-
-export const RepeatedItem = styled.li`
-  padding: 10px 12px;
-  border-radius: 10px;
-  border: 1px solid #365f3f;
-  background: #1b3122;
-  color: #dff0e5;
-  font-size: 0.92rem;
 `;
