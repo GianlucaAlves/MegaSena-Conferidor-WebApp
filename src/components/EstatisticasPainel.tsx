@@ -2,7 +2,9 @@ import {
   ChartFill,
   ChartLabel,
   ChartList,
+  ChartMeta,
   ChartRow,
+  ChartRowLabel,
   ChartTrack,
   ChartValue,
   LoadingCard,
@@ -10,6 +12,7 @@ import {
   NumberChip,
   NumberChips,
   PulseLine,
+  RankingChartList,
   SmallNote,
   StatCard,
   StatLabel,
@@ -27,10 +30,38 @@ type EstatisticasPainelProps = {
   estatisticas: Estatisticas | null;
 };
 
+const POSICOES_RANKING = [
+  "PRIMEIRO LUGAR",
+  "SEGUNDO LUGAR",
+  "TERCEIRO LUGAR",
+  "QUARTO LUGAR",
+  "QUINTO LUGAR",
+  "SEXTO LUGAR",
+  "SETIMO LUGAR",
+  "OITAVO LUGAR",
+  "NONO LUGAR",
+  "DECIMO LUGAR",
+];
+
+function getPosicaoRanking(index: number) {
+  return POSICOES_RANKING[index] ?? `${index + 1}o LUGAR`;
+}
+
 export function EstatisticasPainel({
   carregandoEstatisticas,
   estatisticas,
 }: EstatisticasPainelProps) {
+  const totalTopPares = estatisticas
+    ? estatisticas.top_pares_repetidos.reduce(
+        (acc, item) => acc + item.frequencia,
+        0,
+      )
+    : 0;
+
+  const totalTopNumeros = estatisticas
+    ? estatisticas.top_numeros.reduce((acc, item) => acc + item.frequencia, 0)
+    : 0;
+
   return (
     <StatsSection>
       <StatsTitle>Estatisticas da base da Mega-Sena</StatsTitle>
@@ -134,7 +165,9 @@ export function EstatisticasPainel({
                       <ChartTrack>
                         <ChartFill $width={percentual} />
                       </ChartTrack>
-                      <ChartValue>{item.frequencia}</ChartValue>
+                      <ChartValue>
+                        {item.frequencia} ({percentual.toFixed(1)}%)
+                      </ChartValue>
                     </ChartRow>
                   );
                 })}
@@ -143,51 +176,70 @@ export function EstatisticasPainel({
 
             <StatCard>
               <StatLabel>Top pares de dezenas que mais saíram juntos</StatLabel>
-              <ChartList>
-                {estatisticas.top_pares_repetidos.map((item) => {
+              <RankingChartList>
+                {estatisticas.top_pares_repetidos.map((item, index) => {
+                  const rank = index + 1;
                   const percentual = calcularPercentual(
                     item.frequencia,
-                    estatisticas.top_pares_repetidos[0]?.frequencia ?? 0,
+                    totalTopPares,
                   );
 
                   return (
-                    <ChartRow key={`par-${item.par[0]}-${item.par[1]}`}>
+                    <ChartRow
+                      key={`par-${item.par[0]}-${item.par[1]}`}
+                      $rank={rank}
+                    >
                       <ChartLabel>
-                        {String(item.par[0]).padStart(2, "0")} +{" "}
-                        {String(item.par[1]).padStart(2, "0")}
+                        <ChartMeta $rank={rank}>
+                          {getPosicaoRanking(index)}
+                        </ChartMeta>
+                        <ChartRowLabel>
+                          {String(item.par[0]).padStart(2, "0")} +{" "}
+                          {String(item.par[1]).padStart(2, "0")}
+                        </ChartRowLabel>
                       </ChartLabel>
                       <ChartTrack>
-                        <ChartFill $width={percentual} />
+                        <ChartFill $width={percentual} $rank={rank} />
                       </ChartTrack>
-                      <ChartValue>{item.frequencia}x</ChartValue>
+                      <ChartValue>
+                        {item.frequencia}x ({percentual.toFixed(1)}%)
+                      </ChartValue>
                     </ChartRow>
                   );
                 })}
-              </ChartList>
+              </RankingChartList>
             </StatCard>
 
             <StatCard>
               <StatLabel>Top 10 dezenas mais sorteadas</StatLabel>
-              <ChartList>
-                {estatisticas.top_numeros.map((item) => {
+              <RankingChartList>
+                {estatisticas.top_numeros.map((item, index) => {
+                  const rank = index + 1;
                   const percentual = calcularPercentual(
                     item.frequencia,
-                    estatisticas.top_numeros[0]?.frequencia ?? 0,
+                    totalTopNumeros,
                   );
 
                   return (
-                    <ChartRow key={`top-${item.numero}`}>
+                    <ChartRow key={`top-${item.numero}`} $rank={rank}>
                       <ChartLabel>
-                        {String(item.numero).padStart(2, "0")}
+                        <ChartMeta $rank={rank}>
+                          {getPosicaoRanking(index)}
+                        </ChartMeta>
+                        <ChartRowLabel>
+                          Dezena {String(item.numero).padStart(2, "0")}
+                        </ChartRowLabel>
                       </ChartLabel>
                       <ChartTrack>
-                        <ChartFill $width={percentual} />
+                        <ChartFill $width={percentual} $rank={rank} />
                       </ChartTrack>
-                      <ChartValue>{item.frequencia}x</ChartValue>
+                      <ChartValue>
+                        {item.frequencia}x ({percentual.toFixed(1)}%)
+                      </ChartValue>
                     </ChartRow>
                   );
                 })}
-              </ChartList>
+              </RankingChartList>
             </StatCard>
           </StatsStack>
         </>

@@ -135,6 +135,7 @@ router.get("/concurso/estatisticas", async (_req, res) => {
       ),
       pool.query<ParRepetido>(
         `
+        WITH
         pares AS (
           SELECT LEAST(bola1, bola2) AS n1, GREATEST(bola1, bola2) AS n2 FROM megasena
           UNION ALL

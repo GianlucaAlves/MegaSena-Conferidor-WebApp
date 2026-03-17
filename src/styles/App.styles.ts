@@ -360,11 +360,21 @@ export const ChartList = styled.div`
   gap: 8px;
 `;
 
-export const ChartRow = styled.div`
+export const RankingChartList = styled(ChartList)`
+  gap: 14px;
+`;
+
+export const ChartRow = styled.div<{ $rank?: number }>`
   display: grid;
   grid-template-columns: minmax(120px, 1fr) 2fr auto;
   align-items: center;
   gap: 10px;
+  padding: ${({ $rank }) => ($rank && $rank <= 3 ? "10px 12px" : "0")};
+  border-radius: 12px;
+  border: ${({ $rank }) =>
+    $rank && $rank <= 3 ? "1px solid #3a6f47" : "1px solid transparent"};
+  background: ${({ $rank }) =>
+    $rank && $rank <= 3 ? "rgba(42, 74, 50, 0.45)" : "transparent"};
 
   @media (max-width: 640px) {
     grid-template-columns: minmax(96px, 1fr) 2fr auto;
@@ -372,9 +382,28 @@ export const ChartRow = styled.div`
 `;
 
 export const ChartLabel = styled.span`
+  display: grid;
+  gap: 2px;
   color: #d8ece0;
   font-size: 0.9rem;
-  white-space: nowrap;
+`;
+
+export const ChartMeta = styled.span<{ $rank?: number }>`
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: ${({ $rank }) => {
+    if ($rank === 1) return "#ffe08a";
+    if ($rank === 2) return "#dce4ef";
+    if ($rank === 3) return "#f2b58a";
+    return "#95b6a0";
+  }};
+  font-weight: ${({ $rank }) => ($rank && $rank <= 3 ? 700 : 600)};
+`;
+
+export const ChartRowLabel = styled.span`
+  color: #d8ece0;
+  font-size: 0.9rem;
 `;
 
 export const ChartTrack = styled.div`
@@ -385,11 +414,16 @@ export const ChartTrack = styled.div`
   overflow: hidden;
 `;
 
-export const ChartFill = styled.div<{ $width: number }>`
+export const ChartFill = styled.div<{ $width: number; $rank?: number }>`
   width: ${({ $width }) => `${Math.max(4, Math.min(100, $width))}%`};
   height: 100%;
   border-radius: inherit;
-  background: linear-gradient(90deg, #4db96a, #86cf99);
+  background: ${({ $rank }) => {
+    if ($rank === 1) return "linear-gradient(90deg, #f2c84a, #ffe08a)";
+    if ($rank === 2) return "linear-gradient(90deg, #aeb8c4, #dce4ef)";
+    if ($rank === 3) return "linear-gradient(90deg, #d48a5a, #f2b58a)";
+    return "linear-gradient(90deg, #4db96a, #86cf99)";
+  }};
 `;
 
 export const ChartValue = styled.span`
