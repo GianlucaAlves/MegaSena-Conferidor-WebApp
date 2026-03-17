@@ -137,15 +137,21 @@ export const SearchRow = styled.div`
 
 export const Input = styled.input`
   padding: 13px 14px;
-  border: 1px solid #b8d3ba;
+  border: 1px solid #7aa283;
   border-radius: 12px;
   font-size: 1rem;
-  color: #174523;
+  color: #e7f5eb;
   background: var(--surface-2);
+  font-weight: 600;
+
+  &::placeholder {
+    color: #a8c6b0;
+    opacity: 1;
+  }
 
   &:focus {
-    outline: 2px solid rgba(21, 126, 44, 0.25);
-    border-color: #5ba06b;
+    outline: 2px solid rgba(77, 185, 106, 0.35);
+    border-color: #86bf93;
   }
 `;
 
@@ -228,7 +234,7 @@ export const ResultCard = styled.section`
   border: 1px solid var(--border);
   border-radius: 16px;
   background: var(--surface-2);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
   animation: ${fadeUp} 420ms ease;
 `;
 
@@ -276,4 +282,136 @@ export const Ball = styled.div`
   letter-spacing: 0.02em;
   box-shadow: 0 2px 8px rgba(77, 185, 106, 0.18);
   border: 2px solid var(--surface);
+`;
+
+export const StatsSection = styled.section`
+  margin-top: 26px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+`;
+
+export const StatsTitle = styled.h3`
+  margin: 0 0 12px;
+  color: #1b5e2b;
+  font-size: 1.35rem;
+`;
+
+export const StatsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+
+  @media (max-width: 760px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+export const StatCard = styled.article`
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid #2d5a37;
+  background: #18251c;
+`;
+
+export const StatLabel = styled.p`
+  margin: 0 0 6px;
+  color: #95b6a0;
+  font-size: 0.88rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+`;
+
+export const StatValue = styled.p`
+  margin: 0;
+  color: #ebf7ef;
+  font-size: 1.22rem;
+  font-weight: 700;
+`;
+
+export const NumberChips = styled.div`
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+`;
+
+export const NumberChip = styled.span`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #2f6f3d;
+  color: #f7fff9;
+  font-weight: 600;
+  font-size: 0.93rem;
+`;
+
+export const InsightText = styled.p`
+  margin: 8px 0 0;
+  color: #cde3d4;
+  font-size: 0.93rem;
+  line-height: 1.45;
+`;
+
+export const ChartList = styled.div`
+  margin-top: 10px;
+  display: grid;
+  gap: 8px;
+`;
+
+export const ChartRow = styled.div`
+  display: grid;
+  grid-template-columns: minmax(120px, 1fr) 2fr auto;
+  align-items: center;
+  gap: 10px;
+
+  @media (max-width: 640px) {
+    grid-template-columns: minmax(96px, 1fr) 2fr auto;
+  }
+`;
+
+export const ChartLabel = styled.span`
+  color: #d8ece0;
+  font-size: 0.9rem;
+  white-space: nowrap;
+`;
+
+export const ChartTrack = styled.div`
+  width: 100%;
+  height: 10px;
+  border-radius: 999px;
+  background: #27402f;
+  overflow: hidden;
+`;
+
+export const ChartFill = styled.div<{ $width: number }>`
+  width: ${({ $width }) => `${Math.max(4, Math.min(100, $width))}%`};
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #4db96a, #86cf99);
+`;
+
+export const ChartValue = styled.span`
+  color: #f2fff5;
+  font-size: 0.88rem;
+  font-weight: 700;
+`;
+
+export const RepeatedList = styled.ul`
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+`;
+
+export const RepeatedItem = styled.li`
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #365f3f;
+  background: #1b3122;
+  color: #dff0e5;
+  font-size: 0.92rem;
 `;
