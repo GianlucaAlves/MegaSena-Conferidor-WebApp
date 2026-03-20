@@ -138,4 +138,18 @@ As variáveis de ambiente são configuradas automaticamente pelo Docker Compose.
 
 ---
 
+##10. Imagens 
+
+<img width="1875" height="992" alt="image" src="https://github.com/user-attachments/assets/b6af83e0-cc73-4e5d-81ff-207ce75623a3" />
+
+<img width="1874" height="987" alt="image" src="https://github.com/user-attachments/assets/dcbbeb9e-22a0-4c9c-ad25-a1fef70bb2f7" />
+
+<img width="1865" height="995" alt="image" src="https://github.com/user-attachments/assets/45aee012-313a-4da4-9464-dfc20af1bb9f" />
+
+<img width="1877" height="996" alt="image" src="https://github.com/user-attachments/assets/3103dc13-add6-4434-b7eb-83d26548d762" />
+
+
+
+
+
 **Autor:** Gianluca Lourenço Alves
